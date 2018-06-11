@@ -6,5 +6,5 @@ This repository is our UI
 git commit/push 할 때 꼭 점검하는 습관을 가집시다!!                                   
 git fetch하는 습관을 통해서 코드가 충돌나지 않게 해요!                                         
 
-git 관련 팁 : https://github.com/mingrammer/git-tips/blob/master/README.md
+git 관련 팁 : https://github.com/mingrammer/git-tips/blob/master/README.md                                                   
 git overapi : http://overapi.com/git
