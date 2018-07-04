@@ -1,0 +1,50 @@
+<div class="action-performance">
+    <div class="modal-header" ng-model="action">
+        <a href="#" class="close" ng-click="closeModal()">
+          <span class="fa fa-times"></span>
+        </a>
+        <div ng-repeat="title in action ">
+            <div rowspan="{list.length}}" data-ng-show="$first">
+                <h3  class="modal-title">{{title}}</h3>
+            </div>
+        </div>
+    </div>
+    <form id="performance_form" ng-controller="DummyController" name="" class="ng-pristine ng-valid ng-scope">
+        <input type="hidden" name="testJson" value="testJson"/>
+        <div class="modal-body clearfix">
+            <div class="row">
+                <div class="col-sm-6">
+                    <fieldset>
+                    <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">Tag</span>
+                        </label>
+                        <div>
+                            <input type="text"  id="output_name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">Input</span>
+                        </label>
+                        <div>
+                            <textarea name="input" required id="input_json" rows="10" cols="40" class="form-control">{}</textarea>
+                        </div>
+                    </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Description:</h3>
+                    <p>From here you can run a performance test.</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary pull-right" ng-disabled="getAction() == false"
+                    ng-click="postPerformance()">Request</button>
+            <button type="button" class="btn btn-default"
+                    ng-click="checkSyntax()">Validate</button>
+            <button type="button" style="margin-right:8px" class="btn btn-default" ng-click="closeModal()">Cancel</button>
+        </div>
+    </form>
+</div>

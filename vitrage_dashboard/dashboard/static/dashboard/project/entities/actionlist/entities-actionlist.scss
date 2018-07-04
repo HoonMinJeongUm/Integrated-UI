@@ -1,0 +1,25 @@
+.entities-actionlist {
+  position: absolute;
+  top: 190px;
+  right: 18px;
+  margin: 12px;
+  padding:8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  display: none;
+  width: 213px;
+
+  .btn-group {
+    margin-top: 10px;
+  }
+  .select {
+    width: 185px;
+  }
+  .runbtn{
+    width: 90px;
+  }
+  .openbtn{
+    width: 90px;
+  }
+}

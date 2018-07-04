@@ -1,0 +1,4 @@
+pbr!=2.1.0,>=2.0.0
+Django<1.11,>=1.8
+django-compressor>=2.0
+iso8601>=0.1.11

@@ -1,0 +1,16 @@
+<div>
+     <div ng-repeat="actionname in action track by actionname">
+         <div rowspan="{action.length}}" data-ng-show="$first">
+               <div  ng-switch="actionname">
+                   <div ng-switch-when="Mistral">
+                        <hz-workflow-execute action="action"
+                                            detailedAction="detailedAction"></hz-workflow-execute>
+                   </div>
+                   <div ng-switch-when="Rally">
+                        <hz-actions-performance action="action"></hz-actions-performance>
+                   </div>
+               </div>
+          </div>
+     </div>
+</div>
+

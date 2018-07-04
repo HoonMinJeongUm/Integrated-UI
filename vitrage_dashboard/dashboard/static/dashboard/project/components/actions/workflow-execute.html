@@ -1,0 +1,56 @@
+<div class="modal-content ">
+        <div class="modal-header " ng-model="action" >
+            <a href="#" class="close" ng-click="closeModal()">
+              <span class="fa fa-times"></span>
+            </a>
+
+            <div ng-repeat="title in action track by title">
+               <div rowspan="{list.length}}" data-ng-show="$first">
+                  <h3  class="modal-title">{{title}}</h3>
+               </div>
+            </div>
+        </div>
+
+        <form id="execute_form" name="execute_form" class="ng-pristine ng-valid ng-scope">
+
+            <div class="modal-body clearfix" ng-init = "seletedWorkflow = 'None'">
+                <div class="left">
+                    <label class="control-label">Detailed Workflow List</label>
+                    <select class="form-control  select-modal" required ng-model="seletedWorkflow">
+                          <option ng-repeat="(key,value) in detailedAction" value="{{key}}" >{{key}}</option>
+                    </select>
+                    <fieldset>
+                             <div ng-show="selectedAction != 'None'">
+                                 <div ng-repeat="value in detailedAction[seletedWorkflow] track by value">
+                                     <div ng-switch ="getInput(value)">
+                                         <div ng-switch-when='true' class ="form-group">
+                                             <label class="control-label required"><span class="field-label">{{value}}</span></label>
+                                             <span class="hz-icon-required fa fa-asterisk"></span>
+                                             <input type="text" required id={{value}} class="form-control"/>
+                                         </div>
+                                         <div ng-switch-when="false" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value}}</span></label>
+                                             <input type="text" id={{value}} class="form-control"/>
+                                         </div>
+                                     </div>
+                                 </div>
+                            </div>
+                    </fieldset>
+                </div>
+
+               <div class="form-group right">
+                   <h3>Description:</h3>
+                   <p>From here you can execute a workflow.</p>
+
+               </div>
+
+            </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary pull-right"
+                            ng-disabled="execute_form.$invalid || seletedWorkflow == 'None'"
+                            ng-click="getData(seletedWorkflow)">Request</button>
+                    <button type="button" style="margin-right:8px"  class="btn btn-default pull-right" ng-click="closeModal()">Cancel</button>
+                </div>
+        </form>
+    </div>
+

@@ -1,0 +1,21 @@
+<div class="entities-actionlist" ng-style="showpanel" ng-init="actionItem.display='none'" ng-show = "selectedAction =='Rally' || selectedAction == 'Mistral'">
+    <div class="input-group input-group-xs select" >
+        <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="selectedAction">
+            <option ng-repeat="action in typeArray track by $index" value="{{action}}">{{action}}</option>
+        </select>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="runbtn btn btn-default pull-left" ng-style = "setStyle(selectedAction)" ng-click="onRunClick(selectedAction)"
+                ng-show="selectedAction == 'Mistral'  || selectedAction == 'Rally'"
+                ng-disabled= "selectedAction =='None' || getComp(selectedAction,'Action')==true" >
+            Run</a>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="openbtn btn btn-default pull-left " ng-style = "setStyle(selectedAction)"
+                ng-show = "selectedAction == 'Rally'"
+                ng-click="onNewtab(selectedAction)"
+                ng-disabled= "selectedAction =='None' || getComp(selectedAction,'Open')==true" >Open</button>
+    </div>
+</div>
+
+
