@@ -58,12 +58,13 @@
                 function error(result) {
                     console.log('Reference URL Error:', result);
                 });
-            _this.selectedItem = data;
+
             if(referenceUrl.hasOwnProperty(data.vitrage_type)){
-                _this.selectedItem.Vitrage_reference = referenceUrl[data.vitrage_type];
+                data.Vitrage_reference = referenceUrl[data.vitrage_type];
             }else{
-                _this.selectedItem.Vitrage_reference = 'No reference';
+                data.Vitrage_reference = 'No reference';
             }
+            _this.selectedItem = data;
             event.stopPropagation();
             $scope.$digest();
         });
@@ -84,16 +85,31 @@
             $scope.$digest();
         });
 
-        $scope.$on('selectedAction', function (event,action) {
-            var modalOptions = {
-                 animation: true,
-                 templateUrl: STATIC_URL + 'dashboard/project/components/actions/actions.html',
-                 controller: 'ActionListModal',
-                 resolve: {action: function() {
-                 return action;
-                 }}
-            };
+        $scope.$on('selectedAction', function (event,action){
+            var modalOptions = {};
 
+            if(action[0] == 'Mistral'){
+                 modalOptions = {
+                     animation: false,
+                     templateUrl: STATIC_URL + 'dashboard/project/components/actions/wait-spinner.html',
+                     controller: 'WaitSpinnerModal',
+                     backdrop: 'static',
+                     windowClass: 'modalSize',
+                     resolve: {action: function() {
+                     return action;
+                     }}
+                 };
+            }else{
+                 modalOptions = {
+                     animation: false,
+                     templateUrl: STATIC_URL + 'dashboard/project/components/actions/actions.html',
+                     controller: 'ActionListModal',
+                     backdrop: 'static',
+                     resolve: {action: function() {
+                     return action;
+                     }}
+                 };
+             }
             modalSrv.show(modalOptions);
         });
 
@@ -374,12 +390,12 @@
                 for (var i = 0; i < data.nodes.length; i++) {
                     var val = data.nodes[i];
                     if (val && val.vitrage_id && val.vitrage_id == _this.selectedItem.vitrage_id) {
-                        _this.selectedItem = val;
                         if(referenceUrl.hasOwnProperty(val.vitrage_type)){
-                            _this.selectedItem.Vitrage_reference = referenceUrl[val.vitrage_type];
+                            val.Vitrage_reference = referenceUrl[val.vitrage_type];
                         }else{
-                            _this.selectedItem.Vitrage_reference = 'No reference';
+                            val.Vitrage_reference = 'No reference';
                         }
+                        _this.selectedItem = val;
                         break;
                     }
                 }

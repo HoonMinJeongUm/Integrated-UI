@@ -10,9 +10,15 @@ function hzWorkflowExecute() {
     };
     return directive;
 
-
     function link(scope) {
-        scope.seletedWorkflow = 'None';
+        scope.selectedWorkflow = 'None';
+
+        if(Object.keys(scope.detailedAction).length > 0){
+            scope.selectedWorkflow = Object.keys(scope.detailedAction)[0];
+        }else{
+            scope.selectedWorkflow = 'None';
+        }
+
         scope.getInput = function (workflow_para) {
 
             if(workflow_para.match('=') == null){
@@ -25,8 +31,7 @@ function hzWorkflowExecute() {
         scope.getData = function (selected_workflow) {
             var new_request ={};
             var input_param={};
-              var valueArray = [];
-
+            var valueArray = [];
 
             for (var i=0; i<scope.detailedAction[selected_workflow].length; i++){
                 var key = scope.detailedAction[selected_workflow][i];

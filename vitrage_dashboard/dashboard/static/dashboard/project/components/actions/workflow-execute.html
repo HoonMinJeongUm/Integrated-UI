@@ -12,16 +12,16 @@
         </div>
 
         <form id="execute_form" name="execute_form" class="ng-pristine ng-valid ng-scope">
-
-            <div class="modal-body clearfix" ng-init = "seletedWorkflow = 'None'">
+            <div class="modal-body clearfix" ng-init = "selectedWorkflow = 'None'">
                 <div class="left">
                     <label class="control-label">Detailed Workflow List</label>
-                    <select class="form-control  select-modal" required ng-model="seletedWorkflow">
-                          <option ng-repeat="(key,value) in detailedAction" value="{{key}}" >{{key}}</option>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedWorkflow">
+                        <option ng-repeat="(key,value) in detailedAction track by $index" value="{{key}}">{{key}}</option>
                     </select>
+
                     <fieldset>
                              <div ng-show="selectedAction != 'None'">
-                                 <div ng-repeat="value in detailedAction[seletedWorkflow] track by value">
+                                 <div ng-repeat="value in detailedAction[selectedWorkflow] track by value">
                                      <div ng-switch ="getInput(value)">
                                          <div ng-switch-when='true' class ="form-group">
                                              <label class="control-label required"><span class="field-label">{{value}}</span></label>
@@ -47,8 +47,8 @@
             </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-primary pull-right"
-                            ng-disabled="execute_form.$invalid || seletedWorkflow == 'None'"
-                            ng-click="getData(seletedWorkflow)">Request</button>
+                            ng-disabled="execute_form.$invalid || selectedWorkflow == 'None'"
+                            ng-click="getData(selectedWorkflow)">Request</button>
                     <button type="button" style="margin-right:8px"  class="btn btn-default pull-right" ng-click="closeModal()">Cancel</button>
                 </div>
         </form>

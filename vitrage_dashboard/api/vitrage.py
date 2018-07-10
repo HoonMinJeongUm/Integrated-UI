@@ -156,7 +156,6 @@ def action_request(request, action, requestdict):
 
     session = Session(auth=auth, timeout=600)
     if str(action) == 'Mistral':
-
         try:
             from mistralclient.api import client as mistral_client
         except ImportError:

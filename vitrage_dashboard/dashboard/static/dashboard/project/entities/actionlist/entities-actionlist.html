@@ -5,10 +5,11 @@
         </select>
     </div>
     <div class="btn-group">
-        <button type="button" class="runbtn btn btn-default pull-left" ng-style = "setStyle(selectedAction)" ng-click="onRunClick(selectedAction)"
+       <button type="button" class="runbtn btn btn-default pull-left btn-primary" ng-style = "setStyle(selectedAction)"
                 ng-show="selectedAction == 'Mistral'  || selectedAction == 'Rally'"
-                ng-disabled= "selectedAction =='None' || getComp(selectedAction,'Action')==true" >
-            Run</a>
+                ng-disabled= "selectedAction =='None' || getComp(selectedAction,'Action')==true"
+                ng-click="onRunClick(selectedAction)">
+            Run</button>
     </div>
     <div class="btn-group">
         <button type="button" class="openbtn btn btn-default pull-left " ng-style = "setStyle(selectedAction)"

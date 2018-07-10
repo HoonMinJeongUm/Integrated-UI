@@ -49,7 +49,6 @@ function hzEntitiesActionlist() {
               scope.showbutton['width'] ='90px';
               return scope.showbutton;
           }
-
         };
         scope.getComp = function(selectedAction,button_type){
             if (selectedAction  != 'Rally' && button_type != "Action"){
@@ -64,6 +63,7 @@ function hzEntitiesActionlist() {
                 return false;
             }
         };
+
         scope.onRunClick = function(action_type) {
             if (action_type == 'Mistral' || action_type  == 'Rally'){
               scope.$emit('selectedAction',[action_type,scope.actionItem.vitrage_type]);
@@ -76,9 +76,7 @@ function hzEntitiesActionlist() {
           else if(selectedAction != 'Mistral'){
               scope.$emit('newTab',selectedAction);
           }
-
         };
     }
 
 }
-
