@@ -1,0 +1,10 @@
+1 *~ 
+2 .DS_Store 
+3 .idea 
+4 .zip 
+5 *.a 
+6 /TODO 
+7 build/ 
+8 doc/*.txt 
+9 doc/ 
+10*.pyc
