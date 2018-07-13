@@ -76,6 +76,7 @@
             .then(
                 function success(result) {
                 _this.actionList = result.data[0];
+                console.log(" ACTIONLIST :::: ",_this.actionList);
                 new_data.url = result.data[1];
                 },
                 function error(result) {
@@ -87,6 +88,7 @@
 
         $scope.$on('selectedAction', function (event,action){
             var modalOptions = {};
+            console.log("CHECK ACTION",action);
 
             if(action[0] == 'Mistral'){
                  modalOptions = {

@@ -26,10 +26,10 @@ function hzEntitiesActionlist() {
             scope.typeArray=[];
             if(scope.actionList.length > 0 ){
                 for(var i = 0; i<scope.actionList.length; i++){
-                    if(scope.actionList[i] != 'Mistral' && scope.actionList[i] != 'Rally' &&
+                    if(scope.actionList[i] != 'Checkpoint' && scope.actionList[i] != 'Mistral' && scope.actionList[i] != 'Rally' &&
                         scope.actionList[i].toLowerCase().match(scope.actionItem.vitrage_type) !=null) {
                         scope.typeArray.push(scope.actionList[i]);
-                    }else if((scope.actionList[i] == 'Mistral' || scope.actionList[i] == 'Rally')){
+                    }else if((scope.actionList[i] == 'Checkpoint' || scope.actionList[i] == 'Mistral' || scope.actionList[i] == 'Rally')){
                         scope.typeArray.push(scope.actionList[i]);
                     }
                 }
@@ -57,7 +57,7 @@ function hzEntitiesActionlist() {
                 }else{
                     return true;
                 }
-            }else if(selectedAction != 'Mistral' && selectedAction  != 'Rally' && button_type == "Action"){
+            }else if(selectedAction != 'Checkpoint' && selectedAction != 'Mistral' && selectedAction  != 'Rally' && button_type == "Action"){
                 return true;
             }else{
                 return false;
@@ -65,7 +65,7 @@ function hzEntitiesActionlist() {
         };
 
         scope.onRunClick = function(action_type) {
-            if (action_type == 'Mistral' || action_type  == 'Rally'){
+            if (action_type == 'Mistral' || action_type  == 'Rally'|| action_type  == 'Checkpoint'){
               scope.$emit('selectedAction',[action_type,scope.actionItem.vitrage_type]);
             }
         };

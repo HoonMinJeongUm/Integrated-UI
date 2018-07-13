@@ -115,6 +115,7 @@ def actions(request, action, nodetype):
                     str(work.input).replace(" ", "").split(',')
             work_cont.append(work_dict)
             return work_cont
+
         except ImportError:
             LOG.warning('Failed to import mistralclient')
     elif str(action) == 'Rally':
@@ -215,6 +216,7 @@ def action_setting(request):
     setting.read('/etc/vitrage-dashboard/setting.conf')
     actiondict = {'mistral': 'Mistral',
                   'rally': 'Rally',
+                  'checkpoint': 'Checkpoint'
                   }
     actionlist = []
     urllist = {}
@@ -224,7 +226,7 @@ def action_setting(request):
 
             for section in conf_actions:
                 result = None
-                if section != 'mistral' and section != 'rally':
+                if section != 'mistral' and section != 'rally' and section != 'checkpoint':
                     if setting.has_section(section):
                         option_list = setting.options(section)
                         matching = [pro for pro in option_list
@@ -233,6 +235,8 @@ def action_setting(request):
                             urllist[section] = setting.get(section,
                                                            matching[0])
 
+                elif section == 'checkpoint':
+                    result = 'true'
                 elif section == 'mistral':
                     result = base.is_service_enabled(request, 'workflowv2')
                 elif section == 'rally':
@@ -246,6 +250,7 @@ def action_setting(request):
                         result = rally_version.version_string()
                     except ImportError:
                         LOG.warning('Failed to import Rally')
+
                 if result:
                     actionlist.append(actiondict[section])
         return [actionlist, urllist]
