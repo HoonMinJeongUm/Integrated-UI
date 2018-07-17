@@ -216,7 +216,8 @@ def action_setting(request):
     setting.read('/etc/vitrage-dashboard/setting.conf')
     actiondict = {'mistral': 'Mistral',
                   'rally': 'Rally',
-                  'checkpoint': 'Checkpoint'
+                  'checkpoint': 'Checkpoint',
+                  'testing': 'Testing'
                   }
     actionlist = []
     urllist = {}
@@ -226,7 +227,7 @@ def action_setting(request):
 
             for section in conf_actions:
                 result = None
-                if section != 'mistral' and section != 'rally' and section != 'checkpoint':
+                if section != 'mistral' and section != 'rally' and section != 'checkpoint' and section != 'testing':
                     if setting.has_section(section):
                         option_list = setting.options(section)
                         matching = [pro for pro in option_list
@@ -236,6 +237,8 @@ def action_setting(request):
                                                            matching[0])
 
                 elif section == 'checkpoint':
+                    result = 'true'
+                elif section == 'testing':
                     result = 'true'
                 elif section == 'mistral':
                     result = base.is_service_enabled(request, 'workflowv2')
