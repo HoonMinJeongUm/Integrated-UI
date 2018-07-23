@@ -15,14 +15,9 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-bin/
-build/
 develop-eggs/
 eggs/
-lib/
-lib64/
 parts/
-sdist/
 var/
 *.egg-info/
 .installed.cfg
