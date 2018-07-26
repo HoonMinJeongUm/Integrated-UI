@@ -3,7 +3,6 @@
 <div class="modal-content checkpoint">
     <div class="modal-header" ng-model="action">
         <a href="#" class="close" ng-click="closeModal()">
-          <span class="fa fa-times"></span>
         </a>
         <div ng-repeat="title in action ">
             <div rowspan="{list.length}}" data-ng-show="$first">
@@ -11,64 +10,44 @@
             </div>
         </div>
     </div>
-    <form id="performance_form" ng-controller="DummyController" name="" class="ng-pristine ng-valid ng-scope">
-        <input type="hidden" name="testJson" value="testJson"/>
-        <div class="modal-body clearfix">
-            <div class="row">
-                <div class="col-sm-6">
+        <form id="checkpoint_form" name="checkpoint_form" class="ng-pristine ng-valid ng-scope">
+            <div class="modal-body clearfix" ng-init = "selectedWorkflow = 'None'">
+                <div class="left">
+                    <label class="control-label">Check_list</label>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedWorkflow">
+                        <option ng-repeat="value in detailedAction" value="{{value}}">{{value}}</option>
+                    </select>
+                    <label class="control-label">Security</label>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedWorkflow">
+                        <option ng-repeat="value in secondAction" value="{{value}}">{{value}}</option>
+                    </select>
 
-                   <fieldset>
-                    <div class="form-group">
-                        <label class="control-label">
-                            <span class="field-label">Check List</span>
-                        </label>
-                        <div>
-                            <input type="text"  id="output_name" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">
-                            <span class="field-label">SSH ID</span>
-                        </label>
-                        <div>
-                            <input type="text" id="input_json" class="form-control">
-                        </div>
-                    </div>
- <div class="form-group">
-                        <label class="control-label">
-                            <span class="field-label">ID ADDRESS</span>
-                        </label>
-                        <div>
-                            <input type="text" id="input_json" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">
-                            <span class="field-label">PORT</span>
-                        </label>
-                        <div>
-                            <input type="text" id="input_json" class="form-control">
-                        </div>
-                    </div>
-
-
+                    <fieldset>
+                             <div ng-show="selectedAction != 'None'">
+                                 <div ng-repeat="value in selectedWorkflow track by value">
+                                     <div ng-switch ="getInput(value)">
+                                         <div ng-switch-when='true' class ="form-group">
+                                             <label class="control-label required"><span class="field-label">{{value}}</span></label>
+                                             <input type="text" required id={{value}} class="form-control"/>
+                                         </div>
+                                     </div>
+                                 </div>
+                            </div>
                     </fieldset>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="form-group right">
                     <h3>Description:</h3>
-                    <p>From here you can check someting.</p>
+                    <p>From here you can execute a workflow.</p>
                 </div>
+
             </div>
-        </div>
+
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary pull-right" ng-disabled="getAction() == false"
-                    ng-click="postPerformance()">Request</button>
-            <button type="button" class="btn btn-default"
-                    ng-click="checkSyntax()">Validate</button>
-            <button type="button" style="margin-right:8px" class="btn btn-default" ng-click="closeModal()">Cancel</button>
+            <button type="button" class="btn btn-primary pull-right"
+                    ng-disabled="checkpoint_form.$invalid || selectedWorkflow == 'None'"
+                    ng-click="getData(selectedWorkflow)">Request</button>
+            <button type="button" style="margin-right:8px"  class="btn btn-default pull-right" ng-click="closeModal()">Cancel</button>
         </div>
     </form>
 </div>

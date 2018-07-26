@@ -1,7 +1,7 @@
 # FILE LOCATION : /etc/vitrage-dashboard/setting.conf
 
 [Default]
-#actions = mistral,rally,zabbix,nagios
+actions = mistral,rally,zabbix,nagios,checkpoint,testing
 
 [zabbix]
 #url = http://[zabbix server's IP:PORT]/zabbix
