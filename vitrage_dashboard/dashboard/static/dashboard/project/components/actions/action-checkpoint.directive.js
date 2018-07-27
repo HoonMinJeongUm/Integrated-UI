@@ -10,20 +10,46 @@ function hzActionsCheckpoint() {
     };
     return directive;
 
+     function link(scope) {
+        scope.detailedAction = ["ping","bottleneck","runscript"];
+        scope.secondAction = ["If SSH","If Key","SSH or Key"];
 
-    function link(scope) {
-        scope.valueList = {};
-            scope.postPerformance = function(){
-                scope.valueList['syntaxcheck'] = false;
-                scope.$emit('requestAction',scope.valueList);
-            };
-            scope.checkSyntax = function(){
-                var inputValue = $('#input_json').val();
-                var outputValue = $('#output_name').val();
-                scope.valueList[outputValue]=JSON.parse(inputValue.replace(/\n/g,'').replace(/\r/g,'').replace(/(\s*)/g,"").trim());
-                scope.valueList['syntaxcheck'] = true;
-                scope.$emit('requestAction',scope.valueList);
+        scope.getInput = function (workflow_para) {
+
+            if(workflow_para.match('=') == null){
+                return 'true'
+            }else{
+                return 'false'
             }
+        };
 
+        scope.getData = function (selected_workflow) {
+            var new_request ={};
+            var input_param={};
+            var valueArray = [];
+
+            for (var i=0; i<scope.detailedAction[selected_workflow].length; i++){
+                var key = scope.detailedAction[selected_workflow][i];
+                var getValue = $('#'+key.replace('=','\\=').replace('""','\\"\\"')).val();
+                var nicString="[";
+                if(key.match('=') == null){
+                    if (getValue == ''){
+                    return
+                    }
+                }
+                if( getValue != ''){
+
+                    if(getValue.match('\\[') && getValue.match('\\]')){
+                        var tempValue = getValue.substring(1,getValue.length-1).replace(/(\s*)/g,"");
+                        valueArray=tempValue.split(',');
+                        input_param[key.replace('=','').replace('None','')]= "[" + String(valueArray) + "]";
+                    }else{
+                        input_param[key.replace('=','').replace('None','')]= String(getValue);
+                    }
+                }
+            }
+            new_request[selected_workflow]=input_param;
+            scope.$emit('requestAction',new_request);
+        }
     }
 }
