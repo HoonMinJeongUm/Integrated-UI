@@ -11,8 +11,10 @@ function hzActionsCheckpoint() {
     return directive;
 
      function link(scope) {
-        scope.detailedAction = ["ping","bottleneck","runscript"];
-        scope.secondAction = ["If SSH","If Key","SSH or Key"];
+        scope.checkAction = ["ping","bottleneck","runscript"];
+        scope.securityAction = ["If SSH","If Key","SSH or Key"];
+        scope.check = {"ping":["Hosts"], "bottleneck":["Port"],"runscript":["Local Path","Remote Path"]}
+        scope.security={"If SSH":["SSH ID","SSH PWD"],"If Key":["Key Path"],"SSH or Key":["Hosts"]}
 
         scope.getInput = function (workflow_para) {
 

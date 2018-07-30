@@ -14,25 +14,30 @@
             <div class="modal-body clearfix" ng-init = "selectedWorkflow = 'None'">
                 <div class="left">
                     <label class="control-label">Check_list</label>
-                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedWorkflow">
-                        <option ng-repeat="value in detailedAction" value="{{value}}">{{value}}</option>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedCheck">
+                        <option ng-repeat="value in checkAction" value="{{value}}">{{value}}</option>
                     </select>
                     <label class="control-label">Security</label>
-                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedWorkflow">
-                        <option ng-repeat="value in secondAction" value="{{value}}">{{value}}</option>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedSecurity">
+                        <option ng-repeat="value in securityAction" value="{{value}}">{{value}}</option>
                     </select>
 
-                    <fieldset>
-                             <div ng-show="selectedAction != 'None'">
-                                 <div ng-repeat="value in selectedWorkflow track by value">
-                                     <div ng-switch ="getInput(value)">
-                                         <div ng-switch-when='true' class ="form-group">
-                                             <label class="control-label required"><span class="field-label">{{value}}</span></label>
-                                             <input type="text" required id={{value}} class="form-control"/>
-                                         </div>
-                                     </div>
+                      <fieldset>
+                                 <div ng-repeat="value in security[selectedSecurity] track by value">
+                                     <label class="control-label required"><span class="field-label">{{value}}</span></label>
+                                     <input type="text" required id={{value1}} class="form-control"/>
                                  </div>
-                            </div>
+                          <fieldset>
+                                 <div ng-if="value != ping">
+                                     Same Ping Security
+                                 </div>
+                          </fieldset>
+                    </fieldset>
+                    <fieldset>
+                                 <div ng-repeat="value in check[selectedCheck] track by value">
+                                     <label class="control-label required"><span class="field-label">{{value}}</span></label>
+                                     <input type="text" required id={{value2}} class="form-control"/>
+                                 </div>
                     </fieldset>
                 </div>
 
