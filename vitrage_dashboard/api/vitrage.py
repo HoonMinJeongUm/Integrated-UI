@@ -217,6 +217,7 @@ def action_setting(request):
     actiondict = {'mistral': 'Mistral',
                   'rally': 'Rally',
                   'checkpoint': 'Checkpoint',
+                  'monitoring': 'Monitoring',
                   'testing': 'Testing'
                   }
     actionlist = []
@@ -227,7 +228,7 @@ def action_setting(request):
 
             for section in conf_actions:
                 result = None
-                if section != 'mistral' and section != 'rally' and section != 'checkpoint' and section != 'testing':
+                if section != 'mistral' and section != 'rally' and section != 'checkpoint' and section != 'testing' and section != 'monitoring':
                     if setting.has_section(section):
                         option_list = setting.options(section)
                         matching = [pro for pro in option_list
@@ -237,6 +238,8 @@ def action_setting(request):
                                                            matching[0])
 
                 elif section == 'checkpoint':
+                    result = 'true'
+                elif section == 'monitoring':
                     result = 'true'
                 elif section == 'testing':
                     result = 'true'

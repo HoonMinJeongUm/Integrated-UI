@@ -1,4 +1,4 @@
-<div class="modal-content checkpoint">
+<div class="modal-content monitoring">
     <div class="modal-header" ng-model="action">
         <a href="#" class="close" ng-click="closeModal()">
         </a>
@@ -8,26 +8,26 @@
             </div>
         </div>
     </div>
-        <form id="checkpoint_form" name="checkpoint_form" class="ng-pristine ng-valid ng-scope">
+        <form id="monitoring_form" name="monitoring_form" class="ng-pristine ng-valid ng-scope">
             <div class="modal-body clearfix" ng-init = "selectedWorkflow = 'None'">
                 <div class="left">
-                    <label class="control-label">Check_list</label>
-                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedCheck">
-                        <option ng-repeat="value in checkAction" value="{{value}}">{{value}}</option>
+                    <label class="control-label">Monitoring tool</label>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedMonitor">
+                        <option ng-repeat="value in monitortool" value="{{value}}">{{value}}</option>
                     </select>
-                    <label class="control-label">Security</label>
-                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedSecurity">
-                        <option ng-repeat="value in securityAction" value="{{value}}">{{value}}</option>
+                    <label class="control-label">Zabbix Host Type</label>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedHost">
+                        <option ng-repeat="value in hosttype" value="{{value}}">{{value}}</option>
                     </select>
 
                       <fieldset>
-                                 <div ng-repeat="value in security[selectedSecurity] track by value">
+                                 <div ng-repeat="value in tool[selectedMonitor] track by value">
                                      <label class="control-label required"><span class="field-label">{{value}}</span></label>
                                      <input type="text" required id={{value1}} class="form-control"/>
                                  </div>
                     </fieldset>
                     <fieldset>
-                                 <div ng-repeat="value in check[selectedCheck] track by value">
+                                 <div ng-repeat="value in host[selectedHost] track by value">
                                      <label class="control-label required"><span class="field-label">{{value}}</span></label>
                                      <input type="text" required id={{value2}} class="form-control"/>
                                  </div>
@@ -36,15 +36,15 @@
 
                 <div class="form-group right">
                     <h3>Description:</h3>
-                    <p>From here you can execute a workflow.</p>
+                    <p>From here you can monitor a workflow.</p>
                 </div>
 
             </div>
 
         <div class="modal-footer">
             <button type="button" class="btn btn-primary pull-right"
-                    ng-disabled="checkpoint_form.$invalid || selectedCheck || selectedSecurity == 'None'"
-                    ng-click="getData()">Request</button>
+                    ng-disabled="monitoring_form.$invalid || selectedWorkflow == 'None'"
+                    ng-click="getData(selectedWorkflow)">Request</button>
             <button type="button" style="margin-right:8px"  class="btn btn-default pull-right" ng-click="closeModal()">Cancel</button>
         </div>
     </form>

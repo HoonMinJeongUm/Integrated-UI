@@ -25,33 +25,9 @@ function hzActionsCheckpoint() {
             }
         };
 
-        scope.getData = function (selected_workflow) {
-            var new_request ={};
-            var input_param={};
-            var valueArray = [];
+        scope.getData = function () {
+            };
 
-            for (var i=0; i<scope.detailedAction[selected_workflow].length; i++){
-                var key = scope.detailedAction[selected_workflow][i];
-                var getValue = $('#'+key.replace('=','\\=').replace('""','\\"\\"')).val();
-                var nicString="[";
-                if(key.match('=') == null){
-                    if (getValue == ''){
-                    return
-                    }
-                }
-                if( getValue != ''){
 
-                    if(getValue.match('\\[') && getValue.match('\\]')){
-                        var tempValue = getValue.substring(1,getValue.length-1).replace(/(\s*)/g,"");
-                        valueArray=tempValue.split(',');
-                        input_param[key.replace('=','').replace('None','')]= "[" + String(valueArray) + "]";
-                    }else{
-                        input_param[key.replace('=','').replace('None','')]= String(getValue);
-                    }
-                }
-            }
-            new_request[selected_workflow]=input_param;
-            scope.$emit('requestAction',new_request);
-        }
     }
 }
