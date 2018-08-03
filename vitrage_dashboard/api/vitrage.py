@@ -27,14 +27,11 @@ from horizon.utils.memoized import memoized  # noqa
 from keystoneauth1.identity.generic.token import Token
 from keystoneauth1.session import Session
 from openstack_dashboard.api import base
-from oslo_utils import importutils
 from vitrageclient import client as vitrage_client
+from contrib import action_manager
 
-import ast
 import ConfigParser
-import json
 import logging
-import os
 LOG = logging.getLogger(__name__)
 
 
@@ -88,6 +85,7 @@ def templates(request, template_id='all'):
     return vitrageclient(request).template.show(template_id)
 
 
+
 def actions(request, action, nodetype):
     endpoint = base.url_for(request, 'identity')
     token_id = request.user.token.id
@@ -97,54 +95,8 @@ def actions(request, action, nodetype):
                  project_name=tenant_name,
                  project_domain_id=project_domain_id)
     session = Session(auth=auth, timeout=600)
-    filters = {}
-    if str(action) == 'Mistral':
-        try:
-            mistral_client = \
-                importutils.try_import("mistralclient.api.client")
-
-            if mistral_client is None:
-                raise ImportError
-
-            mistralcli = mistral_client.client(session=session)
-            work_list = mistralcli.workflows.list()
-            work_dict = {}
-            work_cont = []
-            for work in work_list:
-                work_dict[str(work.name)] = \
-                    str(work.input).replace(" ", "").split(',')
-            work_cont.append(work_dict)
-            return work_cont
-
-        except ImportError:
-            LOG.warning('Failed to import mistralclient')
-    elif str(action) == 'Rally':
-        try:
-            rally_api = \
-                importutils.try_import("rally.api")
-
-            rally_task = \
-                importutils.try_import("rally.cli.commands.task")
-
-            if rally_api is None or rally_task is None:
-                raise ImportError
-
-            task_list = []
-            filters["tags"] = ['Vitrage']
-            rally_tasklist = rally_api.API().task.list(**filters)
-
-            for l_value in rally_tasklist:
-                task_list.append(l_value['uuid'])
-
-            out_path = './static/dashboard/project/' \
-                       'components/actions/vitrage.html'
-            if task_list:
-                rally_task.TaskCommands().report(rally_api.API(),
-                                                 task_list,
-                                                 out=out_path)
-        except ImportError:
-            LOG.warning('Failed to import Rally')
-
+    result = action_manager.ActionManager.getinfo(session, str(action),request)
+    return result
 
 def action_request(request, action, requestdict):
     endpoint = base.url_for(request, 'identity')
