@@ -21,14 +21,14 @@
                     </select>
 
                       <fieldset>
-                                 <div ng-repeat="value in security[selectedSecurity] track by value">
-                                     <label class="control-label required"><span class="field-label">{{value}}</span></label>
+                                 <div ng-repeat="value1 in security[selectedSecurity] track by value1">
+                                     <label class="control-label required"><span class="field-label">{{value1}}</span></label>
                                      <input type="text" required id={{value1}} class="form-control"/>
                                  </div>
                     </fieldset>
                     <fieldset>
-                                 <div ng-repeat="value in check[selectedCheck] track by value">
-                                     <label class="control-label required"><span class="field-label">{{value}}</span></label>
+                                 <div ng-repeat="value2 in check[selectedCheck] track by value2">
+                                     <label class="control-label required"><span class="field-label">{{value2}}</span></label>
                                      <input type="text" required id={{value2}} class="form-control"/>
                                  </div>
                     </fieldset>
@@ -43,8 +43,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-primary pull-right"
-                    ng-disabled="checkpoint_form.$invalid || selectedCheck || selectedSecurity == 'None'"
-                    ng-click="getData()">Request</button>
+                    ng-click="getData(selectedSecurity, selectedCheck)">Request</button>
             <button type="button" style="margin-right:8px"  class="btn btn-default pull-right" ng-click="closeModal()">Cancel</button>
         </div>
     </form>

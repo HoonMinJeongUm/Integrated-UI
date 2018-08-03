@@ -21,15 +21,15 @@
                     </select>
 
                       <fieldset>
-                                 <div ng-repeat="value in tool[selectedMonitor] track by value">
-                                     <label class="control-label required"><span class="field-label">{{value}}</span></label>
-                                     <input type="text" required id={{value1}} class="form-control"/>
+                                 <div ng-repeat="value3 in tool[selectedMonitor] track by value3">
+                                     <label class="control-label required"><span class="field-label">{{value3}}</span></label>
+                                     <input type="text" required id={{value3}} class="form-control"/>
                                  </div>
                     </fieldset>
                     <fieldset>
-                                 <div ng-repeat="value in host[selectedHost] track by value">
-                                     <label class="control-label required"><span class="field-label">{{value}}</span></label>
-                                     <input type="text" required id={{value2}} class="form-control"/>
+                                 <div ng-repeat="value4 in host[selectedHost] track by value4">
+                                     <label class="control-label required"><span class="field-label">{{value4}}</span></label>
+                                     <input type="text" required id={{value4}} class="form-control"/>
                                  </div>
                     </fieldset>
                 </div>
@@ -43,8 +43,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-primary pull-right"
-                    ng-disabled="monitoring_form.$invalid || selectedWorkflow == 'None'"
-                    ng-click="getData(selectedWorkflow)">Request</button>
+                    ng-click="getData(selectedMonitor, selectedHost)">Request</button>
             <button type="button" style="margin-right:8px"  class="btn btn-default pull-right" ng-click="closeModal()">Cancel</button>
         </div>
     </form>
