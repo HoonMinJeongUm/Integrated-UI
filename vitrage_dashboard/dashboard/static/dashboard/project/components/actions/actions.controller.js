@@ -24,14 +24,16 @@
     };
 
     $scope.$on('requestAction', function (event,requestdict) {
-      if (($scope.action[0] == 'Rally' && requestdict['syntaxcheck'] != true) || $scope.action[0] == 'Mistral'){
+      if (($scope.action[0] == 'Rally' && requestdict['syntaxcheck'] != true)){
+          $scope.closeModal();
+      }else{
           $scope.closeModal();
       }
       vitrageActionSrv.postAction($scope.action[0],requestdict)
         .then(
           function success(result) {
             console.log('Action request result => ', result);
-            if(($scope.action[0] == 'Rally' && result != null) || ($scope.action[0] == 'Mistral')){
+            if(($scope.action[0] == 'Rally' && result != null) || ($scope.action[0] == 'Mistral')|| ($scope.action[0] == 'Checkpoint')){
                 $scope.actionresult = true;
             }else{
                 $scope.actionresult = false;
