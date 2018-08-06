@@ -12,18 +12,30 @@ function hzActionsTesting() {
 
 
     function link(scope) {
-        scope.valueList = {};
-            scope.postPerformance = function(){
-                scope.valueList['syntaxcheck'] = false;
-                scope.$emit('requestAction',scope.valueList);
-            };
-            scope.checkSyntax = function(){
-                var inputValue = $('#input_json').val();
-                var outputValue = $('#output_name').val();
-                scope.valueList[outputValue]=JSON.parse(inputValue.replace(/\n/g,'').replace(/\r/g,'').replace(/(\s*)/g,"").trim());
-                scope.valueList['syntaxcheck'] = true;
-                scope.$emit('requestAction',scope.valueList);
-            }
+        scope.testingcase ={'VIM_Testing':['Rally'], 'VNF_Testing':['locustio','stressng','artillery']}
+        scope.route = {"Rally":["requestdict"], "locustio":["locustfile"],"stressng":["cpu", "vm", "vm-bytes", "hdd", "hdd-bytes", "timeout"], "artillery":["count","num","target_ip"]};
 
+        scope.getInput = function (workflow_para) {
+
+            if(workflow_para.match('=') == null){
+                return 'true'
+            }else{
+                return 'false'
+            }
+        };
+
+        scope.getData = function (selectedRoute) {
+           var requestDict={};
+
+              for (var i=0; i<scope.route[selectedRoute].length; i++){
+                 var inputValue  = $('#'+scope.route[selectedRoute][i]).val();
+                 console.log("XXXXXX ",inputValue);
+                 requestDict[scope.route[selectedRoute][i]]=inputValue;
+             }
+
+             console.log("DICTCHECK",requestDict);
+
+            scope.$emit('requestAction',requestDict);
+        }
     }
 }

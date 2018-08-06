@@ -13,8 +13,8 @@ function hzActionsMonitoring() {
      function link(scope) {
         scope.monitortool = ["Zabbix","Nagios"];
         scope.hosttype = ["Nova_host","Nova_instance"];
-        scope.tool = {"Zabbix":["Zabbix Server IP","Zabbix Server Port","Zabbix Server Password","Zabbix Server User", "Zabbix Host Name"], "Nagios":["what"]}
-        scope.host = {"Nova_host":["Host IP","Host ID", "Host Interface Name"],"Nova_instance":["VM IP", "VM ID", "VM Interface Name"]}
+        scope.tool = {"Zabbix":["Zabbix_Server_IP","Zabbix_Server_Port","Zabbix_Server_Password","Zabbix_Server_User", "Zabbix_Host_Name"], "Nagios":["what"]}
+        scope.host = {"Nova_host":["Host_IP","Host_ID", "Host_Interface_Name"],"Nova_instance":["VM_IP", "VM_ID", "VM_Interface_Name"]}
 
         scope.getInput = function (workflow_para) {
 

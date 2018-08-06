@@ -15,21 +15,21 @@
                     <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedMonitor">
                         <option ng-repeat="value in monitortool" value="{{value}}">{{value}}</option>
                     </select>
-                    <label class="control-label">Zabbix Host Type</label>
+                    <label class="control-label">Security</label>
                     <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedHost">
                         <option ng-repeat="value in hosttype" value="{{value}}">{{value}}</option>
                     </select>
 
-                      <fieldset>
-                                 <div ng-repeat="value3 in tool[selectedMonitor] track by value3">
-                                     <label class="control-label required"><span class="field-label">{{value3}}</span></label>
-                                     <input type="text" required id={{value3}} class="form-control"/>
+                    <fieldset>
+                                 <div ng-repeat="value1 in tool[selectedMonitor] track by value1">
+                                     <label class="control-label required"><span class="field-label">{{value1}}</span></label>
+                                     <input type="text" required id={{value1}} class="form-control"/>
                                  </div>
                     </fieldset>
                     <fieldset>
-                                 <div ng-repeat="value4 in host[selectedHost] track by value4">
-                                     <label class="control-label required"><span class="field-label">{{value4}}</span></label>
-                                     <input type="text" required id={{value4}} class="form-control"/>
+                                 <div ng-repeat="value2 in host[selectedHost] track by value2">
+                                     <label class="control-label required"><span class="field-label">{{value2}}</span></label>
+                                     <input type="text" required id={{value2}} class="form-control"/>
                                  </div>
                     </fieldset>
                 </div>
@@ -41,7 +41,7 @@
 
             </div>
 
-        <div class="modal-footer">
+       <div class="modal-footer">
             <button type="button" class="btn btn-primary pull-right"
                     ng-click="getData(selectedMonitor, selectedHost)">Request</button>
             <button type="button" style="margin-right:8px"  class="btn btn-default pull-right" ng-click="closeModal()">Cancel</button>
