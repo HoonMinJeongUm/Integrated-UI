@@ -8,36 +8,111 @@
             </div>
         </div>
     </div>
-        <form id="apimonitor_form" name="apimonitor_form" class="ng-pristine ng-valid ng-scope">
+      <form id="apimonitor_form" name="apimonitor_form" class="ng-pristine ng-valid ng-scope">
             <div class="modal-body clearfix" ng-init = "selectedWorkflow = 'None'">
                 <div class="left">
-                    <div>
-                        <label class="control-label" for="case">Case</label>
-                        <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" id="case" ng-model="tools" ng-options="case for (case,tools) in testingcase">
-                        </select></div>
-                    <div>
-                        <label class="control-label" for="tool">Tool</label>
-                        <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" id="tool" ng-disabled="!tools" ng-model="selectedRoute" ng-options="tool for tool in tools">
-                         </select></div>
-
                     <fieldset>
-                                 <div ng-repeat="value2 in route[selectedRoute] track by value2">
-                                     <label class="control-label required"><span class="field-label">{{value2}}</span></label>
-                                     <input type="text" required id={{value2}} class="form-control"/>
-                                 </div>
+                        <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">zabbix_username</span>
+                        </label>
+                        <div>
+                            <input type="text"  id="zabbix_username" class="form-control" />
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">zabbix_password</span>
+                        </label>
+                        <div>
+                            <input type="text"  id="zabbix_password" class="form-control" />
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">zabbix_server_ip</span>
+                        </label>
+                        <div>
+                            <input type="text"  id="zabbix_server_ip" class="form-control" />
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">zabbix_server_port</span>
+                        </label>
+                        <div>
+                            <input type="text"  id="zabbix_server_port" class="form-control" />
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">mgmt_ip</span>
+                        </label>
+                        <div>
+                            <input type="text"  id="mgmt_ip " class="form-control" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">app_name</span>
+                        </label>
+                        <div>
+                            <input type="text"  id="app_name" class="form-control" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">app_port</span>
+                        </label>
+                        <div>
+                            <input type="text"  id="app_port" class="form-control" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">ssh_username</span>
+                        </label>
+                        <div>
+                            <input type="text"  id="ssh_username" class="form-control" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label">
+                            <span class="field-label">ssh_password</span>
+                        </label>
+                        <div>
+                            <input type="text"  id="ssh_password" class="form-control" />
+                        </div>
+                      </div>
                     </fieldset>
                 </div>
 
                 <div class="form-group right">
+                    <label class="control-label">app_status</label>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedStatus">
+                        <option ng-repeat="value in status" value="{{value}}">{{value}}</option>
+                    </select>
+                     <div ng-repeat="value1 in condition[selectedStatus] track by value1">
+                                     <label class="control-label required"><span class="field-label">{{value1}}</span></label>
+                                     <input type="text" required id={{value1}} class="form-control"/>
+                     </div>
+                    <label class="control-label">app_memory</label>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedMemory">
+                        <option ng-repeat="value in memory" value="{{value}}">{{value}}</option>
+                    </select>
+                     <div ng-repeat="value2 in condition[selectedMemory] track by value2">
+                                     <label class="control-label required"><span class="field-label">{{value2}}</span></label>
+                                     <input type="text" required id={{value2}} class="form-control"/>
+                     </div>
                     <h3>Description:</h3>
-                    <p>From here you test depending on the cases.</p>
+                    <p>From here you can execute a workflow.</p>
                 </div>
 
             </div>
 
-       <div class="modal-footer">
+        <div class="modal-footer">
             <button type="button" class="btn btn-primary pull-right"
-                    ng-click="getData(selectedRoute)">Request</button>
+                    ng-click="getData()">Request</button>
             <button type="button" style="margin-right:8px"  class="btn btn-default pull-right" ng-click="closeModal()">Cancel</button>
         </div>
     </form>

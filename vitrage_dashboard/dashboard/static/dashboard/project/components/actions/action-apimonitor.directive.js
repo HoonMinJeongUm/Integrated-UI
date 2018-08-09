@@ -1,8 +1,8 @@
 angular
     .module('horizon.dashboard.project.vitrage')
-    .directive('hzActionsApiMonitor', hzActionsApiMonitor);
+    .directive('hzActionsApimonitor', hzActionsApimonitor);
 
-function hzActionsApiMonitor() {
+function hzActionsApimonitor() {
     var directive = {
         link: link,
         templateUrl: STATIC_URL + 'dashboard/project/components/actions/action-apimonitor.html',
@@ -10,10 +10,10 @@ function hzActionsApiMonitor() {
     };
     return directive;
 
-
-    function link(scope) {
-        scope.testingcase ={'VIM_Testing':['Rally'], 'VNF_Testing':['locustio','stressng','artillery']}
-        scope.route = {"Rally":["requestdict"], "locustio":["locustfile"],"stressng":["cpu", "vm", "vm-bytes", "hdd", "hdd-bytes", "timeout"], "artillery":["count","num","target_ip"]};
+      function link(scope) {
+        scope.status = ["True","False"];
+        scope.memory = ["True","False"];
+        scope.condition = {"False":["Condition"]};
 
         scope.getInput = function (workflow_para) {
 
@@ -24,18 +24,23 @@ function hzActionsApiMonitor() {
             }
         };
 
-        scope.getData = function (selectedRoute) {
-           var requestDict={};
+        scope.getData = function (selectedSecurity,selectedCheck) {
+             var requestDict={};
+             for (var i=0; i<scope.security[selectedSecurity].length; i++){
+                 var inputValue  = $('#'+scope.security[selectedSecurity][i]).val();
+                 console.log("YYYYYYY",inputValue);
+                 requestDict[scope.security[selectedSecurity][i]]=inputValue;
+             }
 
-              for (var i=0; i<scope.route[selectedRoute].length; i++){
-                 var inputValue  = $('#'+scope.route[selectedRoute][i]).val();
+              for (var i=0; i<scope.check[selectedCheck].length; i++){
+                 var inputValue  = $('#'+scope.check[selectedCheck][i]).val();
                  console.log("XXXXXX ",inputValue);
-                 requestDict[scope.route[selectedRoute][i]]=inputValue;
+                 requestDict[scope.check[selectedCheck][i]]=inputValue;
              }
 
              console.log("DICTCHECK",requestDict);
 
             scope.$emit('requestAction',requestDict);
-        }
+            };
     }
 }

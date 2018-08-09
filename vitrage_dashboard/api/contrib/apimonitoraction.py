@@ -6,7 +6,7 @@ import logging
 import os
 LOG = logging.getLogger(__name__)
 
-class TestingAction(base_action.BaseAction):
+class ApimonitorAction(base_action.BaseAction):
     @staticmethod
     def execute(session,request):
        pass
@@ -15,7 +15,7 @@ class TestingAction(base_action.BaseAction):
         try:
             return True
         except ImportError:
-            LOG.warning('Failed to import Testing')
+            LOG.warning('Failed to import Apimonitor')
 
     @staticmethod
     def getinfo(session, request=None):
@@ -24,4 +24,4 @@ class TestingAction(base_action.BaseAction):
             pass
 
         except ImportError:
-            LOG.warning('Failed to import Testing')
+            LOG.warning('Failed to import Apimonitor')

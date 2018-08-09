@@ -15,7 +15,7 @@ class CheckpointAction(base_action.BaseAction):
         try:
             return True
         except ImportError:
-            LOG.warning('Failed to import CheckPoint')
+            LOG.warning('Failed to import Checkpoint')
 
     @staticmethod
     def getinfo(session, request=None):
@@ -24,4 +24,4 @@ class CheckpointAction(base_action.BaseAction):
             pass
 
         except ImportError:
-            LOG.warning('Failed to import CheckPoint')
+            LOG.warning('Failed to import Checkpoint')
