@@ -1,0 +1,44 @@
+<div class="modal-content monitoring">
+    <div class="modal-header" ng-model="action">
+        <a href="#" class="close" ng-click="closeModal()">
+        </a>
+        <div ng-repeat="title in action ">
+            <div rowspan="{list.length}}" data-ng-show="$first">
+                <h3  class="modal-title">{{title}}</h3>
+            </div>
+        </div>
+    </div>
+        <form id="apimonitor_form" name="apimonitor_form" class="ng-pristine ng-valid ng-scope">
+            <div class="modal-body clearfix" ng-init = "selectedWorkflow = 'None'">
+                <div class="left">
+                    <div>
+                        <label class="control-label" for="case">Case</label>
+                        <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" id="case" ng-model="tools" ng-options="case for (case,tools) in testingcase">
+                        </select></div>
+                    <div>
+                        <label class="control-label" for="tool">Tool</label>
+                        <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" id="tool" ng-disabled="!tools" ng-model="selectedRoute" ng-options="tool for tool in tools">
+                         </select></div>
+
+                    <fieldset>
+                                 <div ng-repeat="value2 in route[selectedRoute] track by value2">
+                                     <label class="control-label required"><span class="field-label">{{value2}}</span></label>
+                                     <input type="text" required id={{value2}} class="form-control"/>
+                                 </div>
+                    </fieldset>
+                </div>
+
+                <div class="form-group right">
+                    <h3>Description:</h3>
+                    <p>From here you test depending on the cases.</p>
+                </div>
+
+            </div>
+
+       <div class="modal-footer">
+            <button type="button" class="btn btn-primary pull-right"
+                    ng-click="getData(selectedRoute)">Request</button>
+            <button type="button" style="margin-right:8px"  class="btn btn-default pull-right" ng-click="closeModal()">Cancel</button>
+        </div>
+    </form>
+</div>
