@@ -13,7 +13,7 @@ function hzActionsTesting() {
 
     function link(scope) {
         scope.testingcase ={'VIM_Testing':['Rally'], 'VNF_Testing':['locustio','stressng','artillery']}
-        scope.route = {"Rally":["requestdict"], "locustio":["locuststring"],"stressng":["cpu", "vm", "vm-bytes", "hdd", "hdd-bytes", "timeout"], "artillery":["count","num","target_ip"]};
+        scope.route = {"Rally":["requestdict"], "locustio":["host","auth","locuststring"],"stressng":["host","auth","cpu", "vm", "vm-bytes", "hdd", "hdd-bytes", "timeout"], "artillery":["host","auth","count","num","target_ip"]};
 
         scope.getInput = function (workflow_para) {
 

@@ -11,9 +11,13 @@ function hzActionsApimonitor() {
     return directive;
 
       function link(scope) {
+        scope.info = ["Zabbix_username","Zabbix_password","Zabbix_server_ip","Zabbix_server_port","mgmt_ip","App_Name","App_port","Ssh_username","Ssh_password"];
         scope.status = ["True","False"];
         scope.memory = ["True","False"];
-        scope.condition = {"False":["Condition"]};
+        scope.agentinfo = ["True","False"];
+        scope.procvalue = ["True","False"];
+        scope.load = ["True","False"];
+        scope.usage = ["True","False"];
 
         scope.getInput = function (workflow_para) {
 
@@ -24,20 +28,21 @@ function hzActionsApimonitor() {
             }
         };
 
-        scope.getData = function (selectedSecurity,selectedCheck) {
+        scope.getData = function (selectedStatus) {
              var requestDict={};
-             for (var i=0; i<scope.security[selectedSecurity].length; i++){
-                 var inputValue  = $('#'+scope.security[selectedSecurity][i]).val();
+             for (var i=0; i<scope.info.length; i++){
+                 var inputValue  = $('#'+scope.info[i]).val();
                  console.log("YYYYYYY",inputValue);
-                 requestDict[scope.security[selectedSecurity][i]]=inputValue;
+                 requestDict[scope.info[i]]=inputValue;
              }
 
-              for (var i=0; i<scope.check[selectedCheck].length; i++){
-                 var inputValue  = $('#'+scope.check[selectedCheck][i]).val();
-                 console.log("XXXXXX ",inputValue);
-                 requestDict[scope.check[selectedCheck][i]]=inputValue;
-             }
 
+
+             if (selectedStatus=='True') {
+                 var inputValue = $('#' + 'condition').val();
+                 console.log("XXXXXX ", inputValue);
+                 requestDict['condition'] = inputValue;
+             }
              console.log("DICTCHECK",requestDict);
 
             scope.$emit('requestAction',requestDict);
