@@ -24,8 +24,12 @@ function hzActionsTesting() {
             }
         };
 
+
         scope.getData = function (selectedRoute) {
            var requestDict={};
+           var inputString = $('#input_json').val();
+           console.log("locustString", inputString);
+           requestDict['locuststring']=inputString;
 
               for (var i=0; i<scope.route[selectedRoute].length; i++){
                  var inputValue  = $('#'+scope.route[selectedRoute][i]).val();

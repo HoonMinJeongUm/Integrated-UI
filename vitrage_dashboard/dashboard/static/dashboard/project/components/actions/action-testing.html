@@ -22,8 +22,67 @@
 
                     <fieldset>
                                  <div ng-repeat="value2 in route[selectedRoute] track by value2">
-                                     <label class="control-label required"><span class="field-label">{{value2}}</span></label>
-                                     <input type="text" required id={{value2}} class="form-control"/>
+                                      <div ng-switch ="value2">
+                                         <div ng-switch-when="locuststring" class ="form-group">
+                                             <label class="control-label required"><span class="field-label">{{value2}}</span></label>
+                                             <textarea name="input" required id="input_json" rows="10" cols="40" class="form-control"></textarea>
+                                         </div>
+                                         <div ng-switch-when="requestdict" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="host" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="auth" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="cpu" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="vm" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="vm-bytes" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="hdd" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="hdd-bytes" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="timeout" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="count" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="num" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                          <div ng-switch-when="target_ip" class="form-group">
+                                             <label class="control-label"><span class="field-label">{{value2}}</span></label>
+                                             <input type="text" id={{value2}} class="form-control"/>
+                                         </div>
+                                     </div>
+                                     <!--<label class="control-label required"><span class="field-label">{{value2}}</span></label>-->
+                                     <!--<div ng-if="'route[selectedRoute]' !='locuststring'">-->
+                                         <!--<input type="text" required id={{value2}} class="form-control"/>-->
+                                     <!--</div>-->
+                                     <!--<div ng-if="'route[selectedRoute]' =='locuststring'">-->
+                                         <!--<textarea required id="value2" rows="10" cols="40" class="form-control"></textarea>-->
+                                     <!--</div>-->
                                  </div>
                     </fieldset>
                 </div>

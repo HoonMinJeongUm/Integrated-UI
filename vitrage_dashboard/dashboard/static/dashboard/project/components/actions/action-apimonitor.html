@@ -12,65 +12,88 @@
             <div class="modal-body clearfix" ng-init = "selectedWorkflow = 'None'">
 
                 <div class="left">
+                    <label class="control-label">Monitoring tool</label>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedMonitor">
+                        <option ng-repeat="value in monitortool" value="{{value}}">{{value}}</option>
+                    </select>
+                    <fieldset>
+                                 <div ng-repeat="value1 in tool[selectedMonitor] track by value1">
+                                     <label class="control-label required"><span class="field-label">{{value1}}</span></label>
+                                     <input type="text" required id={{value1}} class="form-control"/>
+                                 </div>
+                    </fieldset>
+                    <label class="control-label">Zabbix Host Type</label>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedHost">
+                        <option ng-repeat="value in hosttype" value="{{value}}">{{value}}</option>
+                    </select>
+
+                    <fieldset>
+                                 <div ng-repeat="value2 in host[selectedHost] track by value2">
+                                     <label class="control-label required"><span class="field-label">{{value2}}</span></label>
+                                     <input type="text" required id={{value2}} class="form-control"/>
+                                 </div>
+                    </fieldset>
+
+                </div>
+
+                <div class="form-group right">
                      <div ng-repeat="value in info track by value">
                          <label class="control-label required"><span class="field-label">{{value}}</span></label>
                          <input type="text" required id={{value}} class="form-control"/>
                      </div>
-                </div>
 
-                <div class="form-group right">
                     <label class="control-label">app_status</label>
                       <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedStatus">
                         <option ng-repeat="value in status" value="{{value}}">{{value}}</option>
                       </select>
-                      <div ng-show="selectedStatus=='True'">
+                      <div ng-show="selectedStatus=='true'">
                             <label class="control-label">Condition</label>
-                            <input type="text" id="condition" class="form-control">
+                            <input type="text" id="status_condition" class="form-control">
                       </div>
 
                     <label class="control-label">app_memory</label>
                     <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedMemory">
                         <option ng-repeat="value in memory" value="{{value}}">{{value}}</option>
                     </select>
-                      <div ng-show="selectedMemory=='True'">
+                      <div ng-show="selectedMemory=='true'">
                             <label class="control-label">Condition</label>
-                            <input type="text" id="condition2" class="form-control">
+                            <input type="text" id="memory_condition" class="form-control">
                       </div>
 
                        <label class="control-label">OS agent info</label>
                     <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedAgent">
                         <option ng-repeat="value in agentinfo" value="{{value}}">{{value}}</option>
                     </select>
-                      <div ng-show="selectedAgent=='True'">
+                      <div ng-show="selectedAgent=='true'">
                             <label class="control-label">Condition</label>
-                            <input type="text" id="condition3" class="form-control">
+                            <input type="text" id="agentinfo_condition" class="form-control">
                       </div>
 
-                    <label class="control-label">OS agent info</label>
+                    <label class="control-label">OS proc value</label>
                     <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedValue">
                         <option ng-repeat="value in procvalue" value="{{value}}">{{value}}</option>
                     </select>
-                      <div ng-show="selectedValue=='True'">
+                      <div ng-show="selectedValue=='true'">
                             <label class="control-label">Condition</label>
-                            <input type="text" id="condition4" class="form-control">
+                            <input type="text" id="procvalue_condition" class="form-control">
                       </div>
 
                      <label class="control-label">OS cpu load</label>
                     <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedLoad">
                         <option ng-repeat="value in load" value="{{value}}">{{value}}</option>
                     </select>
-                      <div ng-show="selectedLoad=='True'">
+                      <div ng-show="selectedLoad=='true'">
                             <label class="control-label">Condition</label>
-                            <input type="text" id="condition5" class="form-control">
+                            <input type="text" id="cpuload_condition" class="form-control">
                       </div>
 
                     <label class="control-label">OS cpu usage</label>
                     <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedUsage">
                         <option ng-repeat="value in usage" value="{{value}}">{{value}}</option>
                     </select>
-                      <div ng-show="selectedUsage=='True'">
+                      <div ng-show="selectedUsage=='true'">
                             <label class="control-label">Condition</label>
-                            <input type="text" id="condition6" class="form-control">
+                            <input type="text" id="cpuusage_condition" class="form-control">
                       </div>
                 </div>
 
@@ -86,7 +109,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-primary pull-right"
-                    ng-click="getData(selectedStatus)">Request</button>
+                    ng-click="getData(selectedMonitor, selectedHost, selectedStatus, selectedMemory, selectedAgent, selectedValue, selectedLoad, selectedUsage)">Request</button>
             <button type="button" style="margin-right:8px"  class="btn btn-default pull-right" ng-click="closeModal()">Cancel</button>
         </div>
     </form>
