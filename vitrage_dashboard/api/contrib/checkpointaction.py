@@ -8,8 +8,17 @@ LOG = logging.getLogger(__name__)
 
 class CheckpointAction(base_action.BaseAction):
     @staticmethod
-    def execute(session,request):
-       pass
+    def execute(session,request):       
+          print("request      ",request)
+          print("type ",type(request))
+          new_request= request.replace('{','').replace('}','')
+          action = u",\"action\":\"Check\""
+          total_request ="{" + new_request + action +"}"
+          print("####### ",total_request)
+          url = 'curl -i -H \"Content-Type: application/json\" -X POST -d '+'\'' + total_request +'\'' +' http://127.0.0.1:5050/Test'
+          print("url      ",url)
+          os.system(url)
+
     @staticmethod
     def importcheck(data=None):
         try:

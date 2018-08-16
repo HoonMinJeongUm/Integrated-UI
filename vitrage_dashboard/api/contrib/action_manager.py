@@ -39,6 +39,7 @@ class ActionManager():
     @staticmethod
     def execute(session,case,data=None):
         try:
+            print("############################## ",case)
             actionmodule = \
                 importutils.try_import("vitrage_dashboard.api.contrib." + case.lower() + "action")
             action = getattr(actionmodule, case.capitalize() + "Action")

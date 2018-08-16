@@ -11,9 +11,9 @@ function hzActionsCheckpoint() {
     return directive;
 
      function link(scope) {
-        scope.checkAction = ["ping","bottleneck","runscript"];
+        scope.checkAction = ["p2p","bottleneck","runscript"];
         scope.securityAction = ["If SSH","If Key","SSH or Key"];
-        scope.check = {"ping":["Hosts"], "bottleneck":["Port"],"runscript":["Local Path","Remote Path"]};
+        scope.check = {"p2p":["Hosts"], "bottleneck":["Port"],"runscript":["Local Path","Remote Path"]};
         scope.security={"If SSH":["SSH_ID","SSH_PWD"],"If Key":["Key_Path"],"SSH or Key":["Hosts"]};
         scope.getInput = function (workflow_para) {
 
@@ -37,8 +37,8 @@ function hzActionsCheckpoint() {
                  console.log("XXXXXX ",inputValue);
                  requestDict[scope.check[selectedCheck][i]]=inputValue;
              }
-
-             console.log("DICTCHECK",requestDict);
+            requestDict['case']=selectedCheck
+            console.log("DICTCHECK",requestDict);
 
             scope.$emit('requestAction',requestDict);
             };
