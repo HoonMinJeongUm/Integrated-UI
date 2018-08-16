@@ -13,7 +13,9 @@ function hzActionsTesting() {
 
     function link(scope) {
         scope.testingcase ={'VIM_Testing':['Rally'], 'VNF_Testing':['locustio','stressng','artillery']}
-        scope.route = {"Rally":["requestdict"], "locustio":["locustfile"],"stressng":["cpu", "vm", "vm-bytes", "hdd", "hdd-bytes", "timeout"], "artillery":["count","num","target_ip"]};
+        scope.route = {"Rally":["requestdict"], "locustio":["host","auth"],"stressng":["host","auth","cpu", "vm", "vm-bytes", "hdd", "hdd-bytes", "timeout"], "artillery":["host","auth","count","num","target_ip"]};
+
+        scope.input_json = "";
 
         scope.getInput = function (workflow_para) {
 
@@ -24,14 +26,29 @@ function hzActionsTesting() {
             }
         };
 
+
         scope.getData = function (selectedRoute) {
            var requestDict={};
 
-              for (var i=0; i<scope.route[selectedRoute].length; i++){
-                 var inputValue  = $('#'+scope.route[selectedRoute][i]).val();
-                 console.log("XXXXXX ",inputValue);
-                 requestDict[scope.route[selectedRoute][i]]=inputValue;
-             }
+
+           if(selectedRoute=='locustio') {
+                var inputString = $('#input_json').val();
+                // inputString=inputSting.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+                 console.log("locuststring", inputString);
+                 requestDict['locuststring']=inputString.replace(/\n/g,'NL').replace(/\r/g,'').trim();
+               for (var i = 0; i < scope.route[selectedRoute].length; i++) {
+                   var inputValue = $('#' + scope.route[selectedRoute][i]).val();
+                   console.log("XXXXXX ", inputValue);
+                   requestDict[scope.route[selectedRoute][i]] = inputValue;
+               }
+           }
+           else {
+               for (var i = 0; i < scope.route[selectedRoute].length; i++) {
+                   var inputValue = $('#' + scope.route[selectedRoute][i]).val();
+                   console.log("XXXXXX ", inputValue);
+                   requestDict[scope.route[selectedRoute][i]] = inputValue;
+               }
+           }
 
              console.log("DICTCHECK",requestDict);
 

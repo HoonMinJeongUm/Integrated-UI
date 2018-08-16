@@ -15,17 +15,17 @@
                     <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedMonitor">
                         <option ng-repeat="value in monitortool" value="{{value}}">{{value}}</option>
                     </select>
-                    <label class="control-label">Security</label>
-                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedHost">
-                        <option ng-repeat="value in hosttype" value="{{value}}">{{value}}</option>
-                    </select>
-
                     <fieldset>
                                  <div ng-repeat="value1 in tool[selectedMonitor] track by value1">
                                      <label class="control-label required"><span class="field-label">{{value1}}</span></label>
                                      <input type="text" required id={{value1}} class="form-control"/>
                                  </div>
                     </fieldset>
+                    <label class="control-label">Zabbix Host Type</label>
+                    <select class="form-control ng-pristine ng-untouched ng-valid ng-not-empty select-modal" ng-model="selectedHost">
+                        <option ng-repeat="value in hosttype" value="{{value}}">{{value}}</option>
+                    </select>
+
                     <fieldset>
                                  <div ng-repeat="value2 in host[selectedHost] track by value2">
                                      <label class="control-label required"><span class="field-label">{{value2}}</span></label>

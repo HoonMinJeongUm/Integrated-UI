@@ -33,7 +33,7 @@
         .then(
           function success(result) {
             console.log('Action request result => ', result);
-            if(($scope.action[0] == 'Rally' && result != null) || ($scope.action[0] == 'Mistral')|| ($scope.action[0] == 'Checkpoint')){
+            if(($scope.action[0] == 'Rally' && result != null) || ($scope.action[0] != null)){
                 $scope.actionresult = true;
             }else{
                 $scope.actionresult = false;
