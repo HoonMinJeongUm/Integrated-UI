@@ -30,10 +30,12 @@ function hzActionsTesting() {
         scope.getData = function (selectedRoute) {
            var requestDict={};
 
+
            if(selectedRoute=='locustio') {
                 var inputString = $('#input_json').val();
+                // inputString=inputSting.replace(/(?:\r\n|\r|\n)/g, '<br/>');
                  console.log("locuststring", inputString);
-                 requestDict['locuststring']=inputString;
+                 requestDict['locuststring']=inputString.replace(/\n/g,'NL').replace(/\r/g,'').trim();
                for (var i = 0; i < scope.route[selectedRoute].length; i++) {
                    var inputValue = $('#' + scope.route[selectedRoute][i]).val();
                    console.log("XXXXXX ", inputValue);

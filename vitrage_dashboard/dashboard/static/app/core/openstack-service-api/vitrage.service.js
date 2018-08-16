@@ -84,6 +84,8 @@
       }
 
     function postAction(action, requestdict) {
+      var a = '/api/vitrage/requests/' + action + "/" + JSON.stringify(requestdict);
+      console.log("JEBAL",a);
       return apiService.post('/api/vitrage/requests/' + action + "/" + JSON.stringify(requestdict))
           .catch(function () {
             toastService.add('error', gettext('Unable to fetch the Project request action service.'));

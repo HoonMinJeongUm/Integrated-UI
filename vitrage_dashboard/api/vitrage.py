@@ -99,6 +99,9 @@ def actions(request, action, nodetype):
     return result
 
 def action_request(request, action, requestdict):
+    print("############################################ request",request)
+    print("############################################ aciotn", action)
+    print("############################################ requestdict", requestdict)
     endpoint = base.url_for(request, 'identity')
     token_id = request.user.token.id
     tenant_name = request.user.tenant_name
