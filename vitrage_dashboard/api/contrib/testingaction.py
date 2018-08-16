@@ -9,7 +9,8 @@ LOG = logging.getLogger(__name__)
 class TestingAction(base_action.BaseAction):
     @staticmethod
     def execute(session,request):
-       pass
+          url = 'curl -X POST http://127.0.0.1:5050/' + 'Test' + '/' + str(request)
+          os.system(url)
     @staticmethod
     def importcheck(data=None):
         try:
