@@ -50,11 +50,11 @@ function hzActionsTesting() {
            }
 
            if (selectedRoute == 'Rally'){
-                 requestDict['case']='VIM_Testing';
-                 requestDict['tool']='Rally';
+                 requestDict['case']='vim';
+                 requestDict['tool']='rally';
              }
              else {
-               requestDict['case'] = 'VNF_Testing';
+               requestDict['case'] = 'vnf';
                if (selectedRoute == 'stressng') {
                    requestDict['tool'] = 'stressng';
                }

@@ -13,7 +13,7 @@ function hzActionsCheckpoint() {
      function link(scope) {
         scope.checkAction = ["p2p","bottleneck","runscript"];
         scope.securityAction = ["If SSH","If Key","SSH or Key"];
-        scope.check = {"p2p":["Hosts"], "bottleneck":["Port"],"runscript":["Local Path","Remote Path"]};
+        scope.check = {"p2p":["Hosts","Dest_IP"], "bottleneck":["Hosts","Port"],"runscript":["Local Path","Remote Path"]};
         scope.security={"If SSH":["SSH_ID","SSH_PWD"],"If Key":["Key_Path"],"SSH or Key":["Hosts"]};
         scope.getInput = function (workflow_para) {
 
