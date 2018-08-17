@@ -33,7 +33,6 @@ function hzActionsTesting() {
 
            if(selectedRoute=='locustio') {
                 var inputString = $('#input_json').val();
-                // inputString=inputSting.replace(/(?:\r\n|\r|\n)/g, '<br/>');
                  console.log("locuststring", inputString);
                  requestDict['locuststring']=inputString.replace(/\n/g,'NL').replace(/\r/g,'').trim();
                for (var i = 0; i < scope.route[selectedRoute].length; i++) {
@@ -50,6 +49,24 @@ function hzActionsTesting() {
                }
            }
 
+           if (selectedRoute == 'Rally'){
+                 requestDict['case']='VIM_Testing';
+                 requestDict['tool']='Rally';
+             }
+             else {
+               requestDict['case'] = 'VNF_Testing';
+               if (selectedRoute == 'stressng') {
+                   requestDict['tool'] = 'stressng';
+               }
+               else {
+                   if(selectedRoute == 'locustio'){
+                       requestDict['tool'] = 'locustio';
+                   }
+                   else {
+                       requestDict['tool'] = 'artillery';
+                   }
+               }
+           }
              console.log("DICTCHECK",requestDict);
 
             scope.$emit('requestAction',requestDict);
