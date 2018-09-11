@@ -19,6 +19,7 @@ function hzActionsPerformance() {
             };
             scope.checkSyntax = function(){
                 var inputValue = $('#input_json').val();
+                var outputValue = $('#output_name').val();
                 scope.valueList[outputValue]=JSON.parse(inputValue.replace(/\n/g,'').replace(/\r/g,'').replace(/(\s*)/g,"").trim());
                 scope.valueList['syntaxcheck'] = true;
                 scope.$emit('requestAction',scope.valueList);
