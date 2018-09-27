@@ -49,21 +49,6 @@
         });
 
         $scope.$on('graphItemClicked', function (event, data) {
-            vitrageActionSrv.getSetting()
-            .then(
-                function success(result) {
-                    referenceUrl = result.data[1];
-
-                },
-                function error(result) {
-                    console.log('Reference URL Error:', result);
-                });
-
-            if(referenceUrl.hasOwnProperty(data.vitrage_type)){
-                data.Vitrage_reference = referenceUrl[data.vitrage_type];
-            }else{
-                data.Vitrage_reference = 'No reference';
-            }
             _this.selectedItem = data;
             event.stopPropagation();
             $scope.$digest();
