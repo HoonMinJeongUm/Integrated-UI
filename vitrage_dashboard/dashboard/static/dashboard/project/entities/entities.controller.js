@@ -76,7 +76,6 @@
             .then(
                 function success(result) {
                 _this.actionList = result.data[0];
-                console.log(" ACTIONLIST :::: ",_this.actionList);
                 new_data.url = result.data[1];
                 },
                 function error(result) {
@@ -163,6 +162,7 @@
 
             vitrageTopologySrv.getTopology('graph', config, admin)
                 .then(function (res) {
+                    console.log(" HRER",res);
                     var nodes = res.data.nodes,
                         links = res.data.links;
 

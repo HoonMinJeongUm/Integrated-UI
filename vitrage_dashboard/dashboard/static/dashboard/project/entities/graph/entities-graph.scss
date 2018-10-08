@@ -30,7 +30,7 @@ $dark_gray: darkgray;
     stroke-opacity: 0.8;
 
     &.selected {
-      stroke: $blue;
+      stroke: $vitrage_red;
       stroke-width: 2 !important;
     }
   }
@@ -39,7 +39,7 @@ $dark_gray: darkgray;
 
     &.selected {
       circle {
-        stroke: $blue;
+        stroke: $vitrage_red;
         stroke-width: 2px;
       }
     }

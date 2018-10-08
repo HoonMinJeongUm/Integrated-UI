@@ -15,7 +15,7 @@ class MonitoringAction(base_action.BaseAction):
         action = u",\"action\":\"Monitoring\""
         total_request ="{" + new_request + action +"}"
         print("####### ",total_request)
-        url = 'curl -i -H \"Content-Type: application/json\" -X POST -d '+'\'' + total_request +'\'' +' http://127.0.0.1:5050/Test'
+        url = 'curl -i -H \"Content-Type: application/json\" -X POST -d '+'\'' + total_request +'\'' +' http://0.0.0.0:5050/Test'
         print("url      ",url)
         os.system(url)
     @staticmethod

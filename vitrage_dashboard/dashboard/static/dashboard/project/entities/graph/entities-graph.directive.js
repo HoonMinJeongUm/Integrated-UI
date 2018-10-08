@@ -65,6 +65,8 @@ function hzEntitiesGraph() {
               .filter(function(d, i){ return this.classList.contains("node"); })
               .selectAll("circle");
 
+            console.log("^&^&^&^&^& allNodes",allNodes);
+
             //console.log('all nodes: ', allNodes.length);
 
             allNodes
@@ -95,6 +97,7 @@ function hzEntitiesGraph() {
 
         scope.$watch('data.ts', function(newVal, oldVal) {
             if (newVal) {
+                console.log("######### scop.$watch newVal",newVal)
                 prepareData();
 
                 if (!graphCreated) {
@@ -175,7 +178,9 @@ function hzEntitiesGraph() {
 
         function prepareData() {
             _.each(pinned, function(pin) {
+                console.log("########## pin ",pin);
                 var node = _.find(scope.data.nodes, function(node) {
+                    console.log("########## prepareData ",node);
                     return pin.id === node.id;
                 });
 
@@ -188,6 +193,8 @@ function hzEntitiesGraph() {
 
             linksMap = {};
             _.each(scope.data.links, function(link) {
+                console.log("########## scope.data.links",scope.data.links);
+                console.log("########## link ",link);
                 linksMap[link.source.id + ',' + link.target.id] = true;
             });
         }
@@ -313,7 +320,10 @@ function hzEntitiesGraph() {
         window.dforce = force;
 
         function drawGraph() {
-            link = link.data(force.links(), function(d) { return d.source.id + '-' + d.target.id; });
+
+            link = link.data(force.links(), function(d) {
+                console.log("##################### d",d);
+                return d.source.id + '-' + d.target.id; });
             link
                 .enter().append('line')
                 .attr('class', 'link')
@@ -697,6 +707,7 @@ function hzEntitiesGraph() {
                 depth--;
 
                 _.each(allNodes, function(node) {
+                    console.log("########### findNodes ");
                     if (linksMap[node.id + ',' + rootNode.id] || linksMap[rootNode.id + ',' + node.id]) {
 
                         if (depth > -1 && !node.high) {
